@@ -18,7 +18,14 @@ if __name__ == "__main__":
         # print(str(script_text))
         find_text = pattern.search(str(script_text))
         if find_text is not None:
-            print(find_text.string)
+            filter_str = find_text.string.replace('<script>\n', '')
+            filter_str = filter_str.replace('</script>', '')
+            filter_str = filter_str.replace('window.rawData=', '')
+            filter_str = filter_str.replace('};', '}')
+
+            json_obj = json.loads(filter_str)
+            print(json_obj)
+#
 
 
 
